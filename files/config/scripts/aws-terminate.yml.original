@@ -1,0 +1,30 @@
+- name: DELETE Instance with Gatling configuration + DELETE Import Key + DELETE Security Group
+  hosts: localhost
+  gather_facts: no
+  become: true
+  tasks:
+
+    - name: DELETE EC2 Instance with Gatling
+      ec2_instance:
+        state: absent
+        filters:
+          key-name: gatling-key
+        region: region-variable
+        aws_access_key: aws_access_key-variable
+        aws_secret_key: aws_secret_key-variable
+
+    - name: "DELETE Security group by name"
+      ec2_group:
+        region: region-variable
+        name: gatling-securitygroup
+        state: absent
+        aws_access_key: aws_access_key-variable
+        aws_secret_key: aws_secret_key-variable
+
+    - name: DELETE Import Key from AWS
+      ec2_key:
+        name: gatling-key
+        region: region-variable
+        state: absent
+        aws_access_key: aws_access_key-variable
+        aws_secret_key: aws_secret_key-variable

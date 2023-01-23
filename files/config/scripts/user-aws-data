@@ -1,0 +1,23 @@
+#!/bin/bash
+
+timedatectl set-timezone "America/Argentina/Buenos_Aires" &&
+yum update -y &&
+yum search docker &&
+yum info docker &&
+yum install docker -y &&
+usermod -a -G docker ec2-user &&
+id ec2-user &&
+newgrp docker &&
+wget https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) &&
+mv docker-compose-$(uname -s)-$(uname -m) /usr/local/bin/docker-compose &&
+cp /usr/local/bin/docker-compose /bin/docker-compose &&
+chmod -v +x /usr/local/bin/docker-compose &&
+systemctl enable docker.service &&
+systemctl start docker.service &&
+yum install httpd -y &&
+systemctl enable httpd &&
+systemctl start httpd &&
+mv /etc/httpd/conf.d/welcome.conf /etc/httpd/conf.d/welcome &&
+systemctl reload httpd
+mkdir /home/ec2-user/simulations &&
+mkdir /var/www/html/reports &&
