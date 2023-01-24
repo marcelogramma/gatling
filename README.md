@@ -17,7 +17,8 @@ A) Se deben completar las credenciales de AWS, configuraciones de instancias y d
 
 Una vez subida la llave publica y modificados los valores de las variables en el archivo .env, se puede proceder a realizar el build de la imagen:
 
-- Buildear imagen
+- Buildear imagen:
+
 docker build . -t gatlingimg
 
 Una vez buildeada la imagen debemos:
