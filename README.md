@@ -3,7 +3,8 @@ Este es el manifiesto para levantar el servicio de Gatling.
 Para poner en ejecucion el proyecto se debe instalar docker y docker-compose
 
 El proyecto inicialmente se conecta con AWS atraves de una imagen de ansible y procede a hacer el deploy de una instancia con gatling.
-Dicha instancia ejecuta el servicio de gatling y una vez que termina de hacer las pruebas, permite mostrarlos atraves de HTTP por su IP publica.
+
+Dicha instancia ejecutara el servicio de gatling y una vez que termina de hacer las pruebas, permite mostrarlos atraves de HTTP por su IP publica.
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
