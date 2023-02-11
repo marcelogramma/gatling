@@ -1,0 +1,23 @@
+- name: Gather Info AWS Instance
+  hosts: localhost
+  gather_facts: no
+  become: true
+  tasks:
+    - name: Gather information about any instance with a tag key Name and store in variable
+      ec2_instance_info:
+        region: region-variable
+        filters:
+          "tag:Name": gatling-nubity
+          instance-state-name: running
+        aws_access_key: aws_access_key-variable
+        aws_secret_key: aws_secret_key-variable
+      register: ec2_instances
+
+    - name: Show Public IP for instance
+      no_log: true
+      debug:
+        msg: "The instance Public IP is {{ item.public_ip_address }}"
+      with_items: "{{ ec2_instances.instances }}"
+
+    - name: Save Info Locally
+      local_action: copy content="{{ ec2_instances }}" dest="/home/scripts/variable"

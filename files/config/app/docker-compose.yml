@@ -1,0 +1,14 @@
+version: "3.3"
+
+services:
+  gatling:
+    image: denvazh/gatling
+    container_name: gatling
+    restart: always
+    volumes:
+      - /home/ec2-user/simulations:/opt/gatling/user-files/simulations
+      - /home/ec2-user/reports:/opt/gatling/user-files/reports
+      - /var/www/html/reports:/opt/gatling/results
+    tty: true
+    labels:
+      description: "Imagen de Gatling en AWS"

@@ -1,0 +1,14 @@
+version: "3.3"
+
+services:
+  gatling:
+    image: gatlingimg
+    container_name: gatling
+    restart: always
+    volumes:
+      - ./files/config/scripts/:/home/scripts/
+      - ./files/config/.env/:/home/scripts/.env
+      - ./files/config/app:/home/app
+    tty: true
+    labels:
+        descripcion: "Imagen de centos con Ansible para hacer deploy de Gatling en AWS"

@@ -1,0 +1,13 @@
+- name: Resume Instance with Gatling configuration
+  hosts: localhost
+  gather_facts: no
+  become: true
+  tasks:
+    - name: RESUME EC2 Instance with Gatling
+      ec2_instance:
+        state: started
+        filters:
+          key-name: gatling-key
+        region: region-variable
+        aws_access_key: aws_access_key-variable
+        aws_secret_key: aws_secret_key-variable

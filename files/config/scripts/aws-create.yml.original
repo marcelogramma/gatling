@@ -1,0 +1,59 @@
+- name: Import Key + Create Security Group + Create Instance with Gatling configuration
+  hosts: localhost
+  gather_facts: no
+  become: true
+  tasks:
+    - name: IMPORT Key from local machine to AWS
+      ec2_key:
+        name: gatling-key
+        region: region-variable
+        key_material: key-variable
+        aws_access_key: aws_access_key-variable
+        aws_secret_key: aws_secret_key-variable
+      tags:
+        - gatling_id_key
+        - gatling_key_key
+
+    - name: Create EC2 Security Group
+      ec2_group:
+        name: "gatling-securitygroup"
+        description: sg with 22,80 and 443 open to world
+        vpc_id: vpc_id_variable
+        region: region-variable
+        rules:
+          - proto: tcp
+            ports:
+            - 22
+            cidr_ip: 0.0.0.0/0
+            rule_desc: allow all on port 22
+          - proto: tcp
+            ports:
+            - 80
+            cidr_ip: 0.0.0.0/0
+            rule_desc: allow all on port 80
+          - proto: tcp
+            ports:
+            - 443
+            cidr_ip: 0.0.0.0/0
+            rule_desc: allow all on port 443
+        aws_access_key: aws_access_key-variable
+        aws_secret_key: aws_secret_key-variable
+
+    - name: CREATING and Provisioning EC2 Instance with Gatling
+      ec2_instance:
+        name: gatling-nubity
+        region: region-variable
+        key_name: gatling-key
+        instance_type: instance-type-variable
+        image_id: image-variable
+        security_group: gatling-securitygroup
+        user_data: "{{ lookup('file', 'user-aws-data') }}"
+        wait: yes
+        network:
+          assign_public_ip: yes
+        vpc_subnet_id: subnet_id_variable
+        aws_access_key: aws_access_key-variable
+        aws_secret_key: aws_secret_key-variable
+      tags:
+        - gatling_id_ec2
+        - gatling_key_ec2
