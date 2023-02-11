@@ -5,6 +5,14 @@ import io.gatling.core.Predef.{StringBody, constantUsersPerSec, global, scenario
 import io.gatling.http.Predef.{http, status, _}
 import scala.language.postfixOps
 
+import io.gatling.core.Predef._
+import io.gatling.core.structure.{ChainBuilder, ScenarioBuilder}
+import io.gatling.http.Predef._
+import io.gatling.http.protocol.HttpProtocolBuilder
+
+import scala.concurrent.duration._
+import scala.language.postfixOps
+
 class GetGlobalSimulation extends Simulation {
   val httpConf = (PerfTestConfig.baseUrl)
   val httpProtocol = http
@@ -26,6 +34,7 @@ class GetGlobalSimulation extends Simulation {
       global.successfulRequests.percent.gt(95)
     )
 }
+
 class RampUsersLoadSimulation extends Simulation {
 
   //1. HTTP Configuration
@@ -35,7 +44,7 @@ class RampUsersLoadSimulation extends Simulation {
     .header("Accept", "application/json")
 
   //2. Call Definitions
-  def getAllComments: ChainBuilder = {
+  def getAllClothes: ChainBuilder = {
       exec(
         http("Get All Clothes")
           .get("/ropa")
@@ -43,7 +52,7 @@ class RampUsersLoadSimulation extends Simulation {
       )
   }
 
-  def getAllPosts: ChainBuilder = {
+  def getAllTravels: ChainBuilder = {
       exec(
         http("Get All Travels")
           .get("/viajes")
@@ -51,19 +60,77 @@ class RampUsersLoadSimulation extends Simulation {
       )
   }
 
+  def getAllelectrodomesticos: ChainBuilder = {
+      exec(
+        http("Get All Electrodomesticos")
+          .get("/viajes")
+          .check(status.in(200 to 304))
+      )
+  }
+
   //3. Scenario Definition
   val scn: ScenarioBuilder = scenario("Eight Scenario")
-    .exec(getAllComments)
+    .exec(getAllClothes)
     .pause(5)
-    .exec(getAllPosts)
+    .exec(getAllTravels)
     .pause(5)
-    .exec(getAllComments)
+    .exec(getAllelectrodomesticos)
 
   //4. Load Scenario
   setUp(
     scn.inject(
       nothingFor(5 seconds),
-      constantUsersPerSec(10) during (10 seconds),
-      rampUsersPerSec(1) to (5) during (20 seconds))
+      constantUsersPerSec(PerfTestConfig.constantUsersPerSec) during (10 seconds),
+      rampUsersPerSec(PerfTestConfig.rampUsersPerSecsince) to (PerfTestConfig.rampUsersPerSecStill) during (20 seconds))
+  ).protocols(httpProtocol)
+}
+
+class RampUsersLoadSimulationAssets extends Simulation {
+
+  //1. HTTP Configuration
+  val httpConf = (PerfTestConfig.baseUrl2)
+  val httpProtocol: HttpProtocolBuilder = http
+    .baseUrl(httpConf)
+    .header("Accept", "application/json")
+
+  //2. Call Definitions
+  def getAllAssets: ChainBuilder = {
+      exec(
+        http("Get All Icons")
+          .get("/assets/2022/imgs/icons/cybermonday_date.svg")
+          .check(status.in(200 to 304))
+      )
+  }
+
+  def getAllAssets2: ChainBuilder = {
+      exec(
+        http("Get All Asssets Images")
+          .get("/assets/2022/share.png")
+          .check(status.in(200 to 304))
+      )
+  }
+
+  def getAllAssets3: ChainBuilder = {
+      exec(
+        http("Get All Asssets 2022")
+          .get("/assets/2022/imgs/icons/favicon_16x16.png")
+          .check(status.in(200 to 304))
+      )
+  }
+
+  //3. Scenario Definition
+  val scn: ScenarioBuilder = scenario("Eight Scenario")
+    .exec(getAllAssets)
+    .pause(5)
+    .exec(getAllAssets2)
+    .pause(5)
+    .exec(getAllAssets3)
+
+  //4. Load Scenario
+  setUp(
+    scn.inject(
+      nothingFor(5 seconds),
+      constantUsersPerSec(PerfTestConfig.constantUsersPerSec) during (10 seconds),
+      rampUsersPerSec(PerfTestConfig.rampUsersPerSecsince) to (PerfTestConfig.rampUsersPerSecStill) during (20 seconds))
   ).protocols(httpProtocol)
 }
