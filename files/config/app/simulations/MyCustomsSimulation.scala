@@ -97,7 +97,7 @@ class RampUsersLoadSimulationAssets extends Simulation {
   def getAllAssets: ChainBuilder = {
       exec(
         http("Get All Icons")
-          .get("/assets/2022/imgs/icons/cybermonday_date.svg")
+          .get(PerfTestConfig.getAllAssets)
           .check(status.in(200 to 304))
       )
   }
@@ -105,7 +105,7 @@ class RampUsersLoadSimulationAssets extends Simulation {
   def getAllAssets2: ChainBuilder = {
       exec(
         http("Get All Asssets Images")
-          .get("/assets/2022/share.png")
+          .get(PerfTestConfig.getAllAssets2)
           .check(status.in(200 to 304))
       )
   }
@@ -113,7 +113,7 @@ class RampUsersLoadSimulationAssets extends Simulation {
   def getAllAssets3: ChainBuilder = {
       exec(
         http("Get All Asssets 2022")
-          .get("/assets/2022/imgs/icons/favicon_16x16.png")
+          .get(PerfTestConfig.getAllAssets3)
           .check(status.in(200 to 304))
       )
   }

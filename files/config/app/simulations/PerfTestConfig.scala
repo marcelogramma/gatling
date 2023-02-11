@@ -10,4 +10,7 @@ object PerfTestConfig {
   val constantUsersPerSec = 10
   val rampUsersPerSecsince = 1
   val rampUsersPerSecStill = 5
+  val getAllAssets = "/assets/2022/imgs/icons/xxxxxxxxxxxxxxxxx"
+  val getAllAssets2 = "/assets/2022/sxxxxxxxxxxxxxxxxx"
+  val getAllAssets3 = "/assets/xxxxxxxxxxxxx"
 }
