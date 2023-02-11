@@ -1,8 +1,8 @@
 package PerfTestConfig
 
 object PerfTestConfig {
-  val baseUrl = "https://www.cybermondayarg.com.ar"
-  val baseUrl2 = "https://assets.cybermonday.com.ar"
+  val baseUrl = "https://www.xxxxxxxxxxxxx.xxx.xx"
+  val baseUrl2 = "https://assets.xxxxxxxxxxxxx.xxx.xx"
   val requestPerSecond = 100
   val durationMin = 2
   val meanResponseTimeMs = 600
