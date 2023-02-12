@@ -17,7 +17,7 @@ class GetGlobalSimulation extends Simulation {
   val httpConf = (PerfTestConfig.baseUrl)
   val httpProtocol = http
     .baseUrl(httpConf)
-  val rootEndPointUsers = scenario("Root end point calls")
+  val rootEndPointUsers = scenario("Stress Test Get Global Simulation")
     .exec(http("root end point")
       .get("/")
       .header("Content-Type", "application/json")
@@ -69,7 +69,7 @@ class RampUsersLoadSimulation extends Simulation {
   }
 
   //3. Scenario Definition
-  val scn: ScenarioBuilder = scenario("Eight Scenario")
+  val scn: ScenarioBuilder = scenario("Stress Test Ropa - Viajes- Electrodomesticos")
     .exec(getAllClothes)
     .pause(5)
     .exec(getAllTravels)
@@ -83,6 +83,11 @@ class RampUsersLoadSimulation extends Simulation {
       constantUsersPerSec(PerfTestConfig.constantUsersPerSec) during (10 seconds),
       rampUsersPerSec(PerfTestConfig.rampUsersPerSecsince) to (PerfTestConfig.rampUsersPerSecStill) during (20 seconds))
   ).protocols(httpProtocol)
+  .assertions(
+      global.responseTime.max.lt(PerfTestConfig.meanResponseTimeMs),
+      global.responseTime.mean.lt(PerfTestConfig.maxResponseTimeMs),
+      global.successfulRequests.percent.gt(95)
+    )
 }
 
 class RampUsersLoadSimulationAssets extends Simulation {
@@ -119,7 +124,7 @@ class RampUsersLoadSimulationAssets extends Simulation {
   }
 
   //3. Scenario Definition
-  val scn: ScenarioBuilder = scenario("Eight Scenario")
+  val scn: ScenarioBuilder = scenario("Stress Test Assets")
     .exec(getAllAssets)
     .pause(5)
     .exec(getAllAssets2)
@@ -133,4 +138,9 @@ class RampUsersLoadSimulationAssets extends Simulation {
       constantUsersPerSec(PerfTestConfig.constantUsersPerSec) during (10 seconds),
       rampUsersPerSec(PerfTestConfig.rampUsersPerSecsince) to (PerfTestConfig.rampUsersPerSecStill) during (20 seconds))
   ).protocols(httpProtocol)
+  .assertions(
+      global.responseTime.max.lt(PerfTestConfig.meanResponseTimeMs),
+      global.responseTime.mean.lt(PerfTestConfig.maxResponseTimeMs),
+      global.successfulRequests.percent.gt(95)
+    )
 }

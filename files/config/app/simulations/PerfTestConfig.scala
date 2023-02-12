@@ -1,16 +1,17 @@
 package PerfTestConfig
 
 object PerfTestConfig {
-  val baseUrl = "https://www.xxxxxxxxxxxxx.xxx.xx"
-  val baseUrl2 = "https://assets.xxxxxxxxxxxxx.xxx.xx"
+  val baseUrl = "https://www.xxxxxxxxxxxx.com.ar"
+  val baseUrl2 = "https://assets.xxxxxxxxxxxx.com.ar"
   val requestPerSecond = 100
-  val durationMin = 2
+  val durationMin = 2 // solo para el test GetGlobalSimulation
   val meanResponseTimeMs = 600
   val maxResponseTimeMs = 200
-  val constantUsersPerSec = 10
-  val rampUsersPerSecsince = 1
-  val rampUsersPerSecStill = 5
-  val getAllAssets = "/assets/2022/imgs/icons/xxxxxxxxxxxxxxxxx"
-  val getAllAssets2 = "/assets/2022/sxxxxxxxxxxxxxxxxx"
-  val getAllAssets3 = "/assets/xxxxxxxxxxxxx"
+  val constantUsersPerSec = 10 // solo para el test RampUsersLoadSimulation
+  val rampUsersPerSecsince = 1 // solo para el test RampUsersLoadSimulation
+  val rampUsersPerSecStill = 5 // solo para el test RampUsersLoadSimulation
+  val getAllAssets = "/assets/2022/imgs/icons/xxxxxxxxxxxx.svg" // solo para el test RampUsersLoadSimulationAssets
+  val getAllAssets2 = "/assets/2022/share.png" // solo para el test RampUsersLoadSimulationAssets
+  val getAllAssets3 = "/assets/2022/imgs/icons/favicon_16x16.png" // solo para el test RampUsersLoadSimulationAssets
+  val atOnceUser = 15 //solo para el test pause and check status simulation
 }
