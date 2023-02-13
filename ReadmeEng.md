@@ -1,4 +1,4 @@
-This is the manifesto to lift the Gatling service.
+This is the manifest to lift the Gatling service.
 
 To run the project, docker and docker-compose must be installed.
 
