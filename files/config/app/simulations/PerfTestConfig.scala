@@ -7,9 +7,9 @@ object PerfTestConfig {
   val durationMin = 2 // solo para el test GetGlobalSimulation
   val meanResponseTimeMs = 600
   val maxResponseTimeMs = 200
-  val constantUsersPerSec = 10 // solo para el test RampUsersLoadSimulation
-  val rampUsersPerSecsince = 1 // solo para el test RampUsersLoadSimulation
-  val rampUsersPerSecStill = 5 // solo para el test RampUsersLoadSimulation
+  val constantUsersPerSec = 10 // solo para el test RampUsersLoadSimulation y RampUsersLoadSimulationAssets
+  val rampUsersPerSecsince = 1 // solo para el test RampUsersLoadSimulation  y RampUsersLoadSimulationAssets
+  val rampUsersPerSecStill = 5 // solo para el test RampUsersLoadSimulation y RampUsersLoadSimulationAssets
   val getAllAssets = "/assets/2022/imgs/icons/xxxxxxxxxxxx.svg" // solo para el test RampUsersLoadSimulationAssets
   val getAllAssets2 = "/assets/2022/share.png" // solo para el test RampUsersLoadSimulationAssets
   val getAllAssets3 = "/assets/2022/imgs/icons/favicon_16x16.png" // solo para el test RampUsersLoadSimulationAssets
