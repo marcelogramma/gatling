@@ -1,3 +1,5 @@
+[English version](ReadmeEng.md)
+
 Este es el manifiesto para levantar el servicio de Gatling.
 
 Para poner en ejecucion el proyecto se debe instalar docker y docker-compose
@@ -11,6 +13,8 @@ Dicha instancia ejecutara el servicio de gatling y una vez que termina de hacer 
 Antes de empezar:
 
 A) Se deben completar las credenciales de AWS, configuraciones de instancias y de Gatling en el archivo ".env" dentro de carpeta "files/config/"
+
+B) toda la configuracion se hace en el archivo PerfTestConfig.scala que se encuentra en /files/config/app/simulations/
 
 *Opcional, se puede cambiar la llave publica y privada en "/files/config/scripts", a su vez hay que modificar el valor de la variable public_key_name y private_key_name. [Esta llave se usara para hacer el deploy de la instancia en AWS]
 
