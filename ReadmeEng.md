@@ -14,6 +14,8 @@ A) The AWS credentials, instance and Gatling configurations must be completed in
 
 B) all the configuration is done in the file PerfTestConfig.scala which is located in /files/config/app/simulations/
 
+C) Create an ssh key pair (private and public), id_rsa_gatling and id_rsa_gatling.pub. Put them in the /files/config/scripts/ directory
+
 *Optional, you can change the public and private key in "/files/config/scripts", in turn you have to modify the value of the variable public_key_name and private_key_name. [This key will be used to deploy the instance on AWS]
 
 -------------------------------------------------- -------------------------------------------------- -------------------------------------------------- --
