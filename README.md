@@ -16,6 +16,8 @@ A) Se deben completar las credenciales de AWS, configuraciones de instancias y d
 
 B) toda la configuracion se hace en el archivo PerfTestConfig.scala que se encuentra en /files/config/app/simulations/
 
+C) Crear un par de key ssh (privada y publica), id_rsa_gatling y id_rsa_gatling.pub. Dejarlas en el directorio /files/config/scripts/
+
 *Opcional, se puede cambiar la llave publica y privada en "/files/config/scripts", a su vez hay que modificar el valor de la variable public_key_name y private_key_name. [Esta llave se usara para hacer el deploy de la instancia en AWS]
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
